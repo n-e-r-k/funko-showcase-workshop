@@ -50,7 +50,6 @@ export default function Home({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [search, setSearch] = useState("");
   const [funkos, setFunkos] = useState(funkosFetch);
-
   useEffect(() => {
     const filterFunkos = (funko: Funko) => {
       return (
@@ -62,20 +61,17 @@ export default function Home({
     const filteredFunkos = funkosFetch.filter(filterFunkos);
     setFunkos(filteredFunkos);
   }, [search]);
-
   return (
     <>
       <Head>
-        <title></title>
+        <title>Funko Showcase</title>
         <meta name="description" content="Funko Showcase." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
       <Container maxWidth="lg">
         <SearchBar setSearch={setSearch} />
-
-        {/* Insert code for Add Button component here */}
-
+        <AddFunkoButton setFunkos={setFunkos} />
         <main>
           <Box display="grid" gridTemplateColumns="repeat(3, 1fr)" gap={4}>
             <FunkoCard funkos={funkos} setFunkos={setFunkos} />
